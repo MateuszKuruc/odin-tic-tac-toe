@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 200px;
+    width: 200px;
+}
+
+.gameboard > div {
+    border: 1px solid black;
+
+}
