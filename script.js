@@ -1,7 +1,11 @@
 "use strict";
 
+
+
 const gameBoard = (function() {
-    const boardRows = 3;
+    // create board grid
+    const displayGrid = function() {
+        const boardRows = 3;
     const boardColumns = 3;
     const container = document.querySelector('.gameboard');
     for (let i = 0; i < boardRows; i++) {
@@ -14,12 +18,30 @@ const gameBoard = (function() {
             container.appendChild(columnCell);
         }
     }
+    }
+    // gameboard array with choices
+    let gameboard = ['x', 'x', 'o', 'x', 'o'];
+    return {
+        gameboard,
+        displayGrid: function() {
+        displayGrid();
+    }
+}
 })();
 
 function FactoryPlayer(name, symbol) {
   return { name, symbol };
 }
 
+const gameFlow = (function() {
+    
+})();
+
+const displayController = (function() {
+    gameBoard.displayGrid();
+})();
+
 const Player1 = FactoryPlayer("mati", "x");
 const Player2 = FactoryPlayer("pami", "o");
 console.log(Player1, Player2);
+

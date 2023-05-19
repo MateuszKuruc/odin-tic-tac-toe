@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -9,11 +15,40 @@ body {
 .gameboard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 200px;
-    width: 200px;
+    height: 400px;
+    width: 400px;
 }
 
 .gameboard > div {
     border: 1px solid black;
 
+}
+
+.boardContainer {
+display: flex;
+flex-direction: column;
+gap: 3rem;
+background-color: honeydew;
+width: 80%;
+min-width: 500px;
+min-height: 600px;
+justify-content: center;
+align-items: center;
+}
+
+.symbolButton {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    width: 400px;
+}
+
+.symbolButton > button {
+    width: 150px;
+    height: 1.7rem;
+}
+
+#restart {
+    width: 400px;
+    height: 2.5rem;
 }
