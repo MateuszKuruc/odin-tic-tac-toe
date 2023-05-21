@@ -15,13 +15,13 @@ body {
 .gameboard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 400px;
-    width: 400px;
+    height: 450px;
+    width: 450px;
 }
 
 .gameboard > div {
     border: 1px solid black;
-
+    display: flex;
 }
 
 .boardContainer {
@@ -51,4 +51,13 @@ align-items: center;
 #restart {
     width: 400px;
     height: 2.5rem;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    width: 150px;
+    height: 150px;
 }
