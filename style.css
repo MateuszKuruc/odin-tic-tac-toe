@@ -58,13 +58,26 @@ align-items: center;
 .symbolButton > button {
     width: 150px;
     height: 1.7rem;
-    background-color:hsl(210, 100%, 56%)
+    background-color:hsl(210, 100%, 56%);
+    font-weight: 900;
+    font-size: 16px;
+    color: white;
+}
+
+.symbolButton > button:hover {
+    background-color:hsl(210, 100%, 56%, 80%);
 }
 
 #restart {
     width: 400px;
     height: 2.5rem;
-    background-color: orange;
+    background-color: hsl(39, 100%, 50%);
+    font-weight: 900;
+    font-size: 16px;
+}
+
+#restart:hover {
+    background-color: hsl(39, 100%, 50%, 80%);
 }
 
 .field {

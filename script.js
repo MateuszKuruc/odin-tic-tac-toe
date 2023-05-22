@@ -11,6 +11,13 @@ const game = (function () {
   let player2;
   let winner;
 
+  const resetGame = function () {
+    gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
+    game.winner = '';
+    gameBoard.resultMessage.innerHTML = "Ready to play again?";
+    game.activePlayer = game.player1;
+  };
+
   const createPlayer = function () {
     confirmButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -20,7 +27,7 @@ const game = (function () {
       game.player2 = FactoryPlayer(player2Name, "O");
       formBlock.classList.add("hidden");
       game.activePlayer = game.player1;
-      gameBoard.resultMessage.innerHTML = 'In progress...'
+      gameBoard.resultMessage.innerHTML = "In progress...";
     });
   };
 
@@ -29,17 +36,24 @@ const game = (function () {
     createPlayer();
   });
 
-document.addEventListener('click', function(event) {
-    if (!formBlock.contains(event.target) && !startGame.contains(event.target)) {
-        formBlock.classList.add('hidden');
+  document.addEventListener("click", function (event) {
+    if (
+      !formBlock.contains(event.target) &&
+      !startGame.contains(event.target)
+    ) {
+      formBlock.classList.add("hidden");
+      document.querySelector("#name").value = "";
+      document.querySelector("#name2").value = "";
     }
-})
+  });
 
   return {
     activePlayer,
+    createPlayer,
     player1,
     player2,
     winner,
+    resetGame,
   };
 })();
 
@@ -73,43 +87,75 @@ const gameBoard = (function () {
 
   const checkWinner = function () {
     if (
-      (gameboard[0] === "X" && gameboard[1] === "X" && gameboard[2] === "X") ||
-      (gameboard[3] === "X" && gameboard[4] === "X" && gameboard[5] === "X") ||
-      (gameboard[6] === "X" && gameboard[7] === "X" && gameboard[8] === "X") ||
-      (gameboard[0] === "X" && gameboard[4] === "X" && gameboard[8] === "X") ||
-      (gameboard[0] === "X" && gameboard[3] === "X" && gameboard[6] === "X") ||
-      (gameboard[1] === "X" && gameboard[4] === "X" && gameboard[7] === "X") ||
-      (gameboard[2] === "X" && gameboard[5] === "X" && gameboard[8] === "X") ||
-      (gameboard[2] === "X" && gameboard[4] === "X" && gameboard[6] === "X")
+      (gameBoard.gameboard[0] === "X" &&
+        gameBoard.gameboard[1] === "X" &&
+        gameBoard.gameboard[2] === "X") ||
+      (gameBoard.gameboard[3] === "X" &&
+        gameBoard.gameboard[4] === "X" &&
+        gameBoard.gameboard[5] === "X") ||
+      (gameBoard.gameboard[6] === "X" &&
+        gameBoard.gameboard[7] === "X" &&
+        gameBoard.gameboard[8] === "X") ||
+      (gameBoard.gameboard[0] === "X" &&
+        gameBoard.gameboard[4] === "X" &&
+        gameBoard.gameboard[8] === "X") ||
+      (gameBoard.gameboard[0] === "X" &&
+        gameBoard.gameboard[3] === "X" &&
+        gameBoard.gameboard[6] === "X") ||
+      (gameBoard.gameboard[1] === "X" &&
+        gameBoard.gameboard[4] === "X" &&
+        gameBoard.gameboard[7] === "X") ||
+      (gameBoard.gameboard[2] === "X" &&
+        gameBoard.gameboard[5] === "X" &&
+        gameBoard.gameboard[8] === "X") ||
+      (gameBoard.gameboard[2] === "X" &&
+        gameBoard.gameboard[4] === "X" &&
+        gameBoard.gameboard[6] === "X")
     ) {
       console.log("Player1 is the winner!");
       resultMessage.innerHTML = `${game.player1.name} is the winner!`;
-      winner = game.player1;
+      game.winner = game.player1;
     } else if (
-      (gameboard[0] === "O" && gameboard[1] === "O" && gameboard[2] === "O") ||
-      (gameboard[3] === "O" && gameboard[4] === "O" && gameboard[5] === "O") ||
-      (gameboard[6] === "O" && gameboard[7] === "O" && gameboard[8] === "O") ||
-      (gameboard[0] === "O" && gameboard[4] === "O" && gameboard[8] === "O") ||
-      (gameboard[0] === "O" && gameboard[3] === "O" && gameboard[6] === "O") ||
-      (gameboard[1] === "O" && gameboard[4] === "O" && gameboard[7] === "O") ||
-      (gameboard[2] === "O" && gameboard[5] === "O" && gameboard[8] === "O") ||
-      (gameboard[2] === "O" && gameboard[4] === "O" && gameboard[6] === "O")
+      (gameBoard.gameboard[0] === "O" &&
+        gameBoard.gameboard[1] === "O" &&
+        gameBoard.gameboard[2] === "O") ||
+      (gameBoard.gameboard[3] === "O" &&
+        gameBoard.gameboard[4] === "O" &&
+        gameBoard.gameboard[5] === "O") ||
+      (gameBoard.gameboard[6] === "O" &&
+        gameBoard.gameboard[7] === "O" &&
+        gameBoard.gameboard[8] === "O") ||
+      (gameBoard.gameboard[0] === "O" &&
+        gameBoard.gameboard[4] === "O" &&
+        gameBoard.gameboard[8] === "O") ||
+      (gameBoard.gameboard[0] === "O" &&
+        gameBoard.gameboard[3] === "O" &&
+        gameBoard.gameboard[6] === "O") ||
+      (gameBoard.gameboard[1] === "O" &&
+        gameBoard.gameboard[4] === "O" &&
+        gameBoard.gameboard[7] === "O") ||
+      (gameBoard.gameboard[2] === "O" &&
+        gameBoard.gameboard[5] === "O" &&
+        gameBoard.gameboard[8] === "O") ||
+      (gameBoard.gameboard[2] === "O" &&
+        gameBoard.gameboard[4] === "O" &&
+        gameBoard.gameboard[6] === "O")
     ) {
       console.log("Player2 is the winner!");
       resultMessage.innerHTML = `${game.player2.name} is the winner!`;
-      winner = game.player2;
+      game.winner = game.player2;
     } else if (
-      gameboard[0] != "" &&
-      gameboard[1] != "" &&
-      gameboard[2] != "" &&
-      gameboard[3] != "" &&
-      gameboard[4] != "" &&
-      gameboard[5] != "" &&
-      gameboard[6] != "" &&
-      gameboard[7] != "" &&
-      gameboard[8] != "" &&
-      winner != "player1" &&
-      winner != "player2"
+      gameBoard.gameboard[0] != "" &&
+      gameBoard.gameboard[1] != "" &&
+      gameBoard.gameboard[2] != "" &&
+      gameBoard.gameboard[3] != "" &&
+      gameBoard.gameboard[4] != "" &&
+      gameBoard.gameboard[5] != "" &&
+      gameBoard.gameboard[6] != "" &&
+      gameBoard.gameboard[7] != "" &&
+      gameBoard.gameboard[8] != "" &&
+      game.winner != game.player1 &&
+      game.winner != game.player2
     ) {
       console.log("It is a draw!");
       resultMessage.innerHTML = "It is a draw!";
@@ -120,7 +166,7 @@ const gameBoard = (function () {
     updateGameboard,
     gameboard,
     fieldElements,
-    resultMessage
+    resultMessage,
   };
 })();
 
@@ -128,14 +174,13 @@ function FactoryPlayer(name, symbol) {
   return { name, symbol };
 }
 
-const restartGame = (function () {
+const restartAll = (function () {
   const restartButton = document.querySelector("#restart");
 
   const restartGame = function () {
-    gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
-    resultMessage.innerHTML = "Ready to play again?";
-    game.winner = "";
-    for (let i = 0; i < gameBoard.fieldElements.length; i++) {
+    game.resetGame();
+    
+    for (let i = 0; i < gameBoard.gameboard.length; i++) {
       const fieldElement = document.querySelector(`#n${i}`);
       fieldElement.innerHTML = "";
     }
