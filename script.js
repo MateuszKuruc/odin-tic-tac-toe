@@ -29,6 +29,12 @@ const game = (function () {
     createPlayer();
   });
 
+document.addEventListener('click', function(event) {
+    if (!formBlock.contains(event.target) && !startGame.contains(event.target)) {
+        formBlock.classList.add('hidden');
+    }
+})
+
   return {
     activePlayer,
     player1,
@@ -127,7 +133,7 @@ const restartGame = (function () {
 
   const restartGame = function () {
     gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
-    resultMessage.innerHTML = "";
+    resultMessage.innerHTML = "Ready to play again?";
     game.winner = "";
     for (let i = 0; i < gameBoard.fieldElements.length; i++) {
       const fieldElement = document.querySelector(`#n${i}`);
