@@ -65,7 +65,7 @@ align-items: center;
 
 #myForm {
     border: 3px solid black;
-    height: 150px;
+    height: 200px;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ align-items: center;
 }
 
 input {
-    width: 70%
+    width: 100%
 }
 
 .hidden {
@@ -91,4 +91,10 @@ input {
 #submit {
     width: 6rem;
     height: 1.5rem;
+}
+
+.nameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
