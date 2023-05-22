@@ -25,6 +25,7 @@ body {
 }
 
 .boardContainer {
+    position: relative;
 display: flex;
 flex-direction: column;
 gap: 3rem;
@@ -60,4 +61,34 @@ align-items: center;
     font-size: 5rem;
     width: 150px;
     height: 150px;
+}
+
+#myForm {
+    border: 3px solid black;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color:gray;
+}
+
+input {
+    width: 70%
+}
+
+.hidden {
+    display: none;
+}
+
+.form-block {
+    /* display: none; */
+    position: absolute;
+    top: 12vh;
+}
+
+#submit {
+    width: 6rem;
+    height: 1.5rem;
 }
