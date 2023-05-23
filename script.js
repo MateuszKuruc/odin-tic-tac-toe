@@ -11,13 +11,6 @@ const game = (function () {
   let player2;
   let winner;
 
-  const resetGame = function () {
-    gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
-    game.winner = '';
-    gameBoard.resultMessage.innerHTML = "Ready to play again?";
-    game.activePlayer = game.player1;
-  };
-
   const createPlayer = function () {
     confirmButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -53,7 +46,6 @@ const game = (function () {
     player1,
     player2,
     winner,
-    resetGame,
   };
 })();
 
@@ -170,20 +162,43 @@ const gameBoard = (function () {
   };
 })();
 
-function FactoryPlayer(name, symbol) {
-  return { name, symbol };
+function FactoryPlayer(name) {
+  return { name };
 }
 
-const restartAll = (function () {
-  const restartButton = document.querySelector("#restart");
-
-  const restartGame = function () {
-    game.resetGame();
-    
-    for (let i = 0; i < gameBoard.gameboard.length; i++) {
-      const fieldElement = document.querySelector(`#n${i}`);
-      fieldElement.innerHTML = "";
-    }
-  };
-  restartButton.addEventListener("click", restartGame);
+const resetGame = (function() {
+    const restartButton = document.querySelector('#restart');
+    restartButton.addEventListener('click', () => {
+        location.reload();
+    })
 })();
+
+
+
+
+
+
+
+
+// reset function that does not work completely. Cannot use IIFE from the whole code again after reset
+
+// const restartAll = (function () {
+//   const restartButton = document.querySelector("#restart");
+
+//   const restartGame = function () {
+//     game.resetGame();
+    
+//     for (let i = 0; i < gameBoard.gameboard.length; i++) {
+//       const fieldElement = document.querySelector(`#n${i}`);
+//       fieldElement.innerHTML = "";
+//     }
+//   };
+//   restartButton.addEventListener("click", restartGame);
+// })();
+
+// const resetGame = function () {
+//     gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
+//     game.winner = undefined;
+//     gameBoard.resultMessage.innerHTML = "Ready to play again?";
+//     game.activePlayer = game.player1;
+//   };
